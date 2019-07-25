@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<p th:text="'Hello, ' + ${title} + '!'"/>
+
+<p th:each="user : ${users}">
+    id = <span th:text="${user.id}"/>
+    name =<span th:text="${user.name}"/>
+
+</p>
+<table>
+    <tbody>
+    <tr>
+        <td>编号</td>
+        <td>名字</td>
+    </tr>
+    <tr th:each="row,rowStat : ${users}">
+        <!--        <td th:text="${rowStat.count}">1</td>-->
+        <td th:text="${row.id}"/>
+        <td th:text="${row.name}">Thymus Thymi</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
