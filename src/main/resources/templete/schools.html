@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: JPA</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<!--<p th:text="'Hello, ' + ${title} + '!'"/>-->
+
+<p th:each="school : ${schools}">
+    id = <span th:text="${school.id}"/>
+    name =<span th:text="${school.name}"/>
+
+</p>
+<table>
+    <tbody>
+    <tr>
+        <td>学校编号</td>
+        <td>学校名字</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="row,rowStat : ${schools}">
+        <!--        <td th:text="${rowStat.count}">1</td>-->
+        <td th:text="${row.id}"/>
+        <td th:text="${row.name}">Thymus Thymi</td>
+        <td>
+            <!-- Will produce 'http://localhost:8080/gtvg/order/details?orderId=3' (plus rewriting) -->
+            <!--            <a href="details.html"-->
+            <!--               th:href="@{http://localhost:8080/school/deleteById/${row.id}}">delete1 </a>-->
+            <!--    <br>-->
+            <!-- Will produce '/gtvg/order/details?orderId=3' (plus rewriting) -->
+            <a href="details.html" th:href="@{/school/deleteById/{id}(id=${row.id})}">delete 2</a>
+
+            <!-- Will produce '/gtvg/order/3/details' (plus rewriting) -->
+            <!--            <a href="details.html" th:href="@{/order/{orderId}/details(orderId=${o.id})}">view</a>-->
+        </td>
+    </tr>
+
+
+    <form action="schools.html" method="post" th:attr="action=@{/school/save}">
+        <fieldset>
+            ID :<input name="id" type="text"/>
+            School Name<input name="name" type="text"/>
+            <input type="submit" value="add school !" ®/>
+            <!--            <input type="submit" value="Subscribe!" :attr="value=#{schools.id}"/>-->
+        </fieldset>
+    </form>
+    </tbody>
+</table>
+</body>
+</html>
